@@ -1,7 +1,11 @@
-let _ = require('lodash')
-console.log(_.map([1, 2, 3], function(n) { return n * 3 }));
+let app = require('express')()
 
-let app = require('./app').start(8080)
-app.on('root', function (response){
-    response.write('Je suis à la racine')
+app.get('/', (request, response) => {
+    response.send('Salut tu es à la racine ')
 })
+
+app.get('/demo', (request, response) => {
+    response.send('Salut tu es à la démo ')
+})
+
+app.listen('8080')
