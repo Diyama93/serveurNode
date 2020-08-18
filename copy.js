@@ -1,10 +1,11 @@
 //créer un script capable de copier un fichier
 let fs = require('fs')
+let file = "demo.mp3"
+let read = fs.createReadStream(file)
+read.on('data', (chunk) =>{
+    console.log("J'ai lu " + chunk.length)
+})
 
-fs.readFile('demo.mp3', (err, data) =>{
-    if(err) throw err
-    fs.writeFile('copy.mp3', data, (err)=>{
-        if(err) throw err
-        console.log('Le fichier a bien été copié')
-    })
+read.on('end',()=>{
+    console.log("J'ai fini de lire le fichier")
 })
